@@ -1,0 +1,29 @@
+Example:
+1. Create the class:
+
+  class Person {
+    String name;
+    int age;
+
+    Person(this.name, this.age);
+
+    void introduce() {
+      print("Hi, I'm $name and I'm $age years old.");
+    }
+  }
+
+2. We can create a list of Person objects like this:
+  void main() {
+    List<Person> people = [
+      Person("Alice", 22),
+      Person("Bob", 30),
+      Person("Charlie", 25),
+    ];
+
+    // Loop through the list
+    for (var person in people) {
+      person.introduce();
+    }
+  }
+
+

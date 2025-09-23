@@ -1,0 +1,18 @@
+1. SingleChildScrollView
+  - Use when you have a small number of widgets (not too many).
+  - good when the whole content is one “page” (e.g. a form, profile screen, settings page).
+  - Bad for large/long lists → performance drops because everything is built/rendered at the same time.
+
+2. ListView
+  - Use when you have many items (dynamic or long lists).
+  - Has built-in scroll physics, separators, and can be infinite.
+  - Not ideal if you only have a handful of widgets → SingleChildScrollView is simpler.
+  Example:
+  ListView.builder(
+    itemCount: 1000,
+    itemBuilder: (context, index) {
+      return ListTile(
+        title: Text('Item $index'),
+      );
+    },
+  );

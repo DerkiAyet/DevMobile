@@ -1,0 +1,38 @@
+1. What is Null Safety?
+   - Null safety ensures that variables can’t be null unless you say so.
+
+2. How does it work?
+   - By default:
+        int a = 5;    // ✅ always an int
+        a = null;     // ❌ not allowed
+   ___________________________________________
+   - If you want something nullable, you mark it with ?:
+        int? b = 5;   // can hold int or null
+        b = null;     // ✅ allowed
+
+3. Operators for Null Safety
+   a. Null-aware access (?.):
+        String? name;
+        print(name?.length); // null-safe, won’t crash
+
+   b. Null-coalescing (??):
+        String? name;
+        print(name ?? "Guest"); // if name is null → "Guest"
+
+   c. Null-coalescing assignment (??=):
+        String? name;
+        name ??= "Guest";  // assigns "Guest" only if null
+
+   d. Null assertion (!):
+        String? name = "Alex";
+        print(name!.length); // force treat as non-null: is actually dangerous if name is really null
+
+   e. Late variables (late):
+        late String title;
+        title = "Hello"; // must be initialized before use
+        print(title);
+
+4. Collections and Null Safety:
+   List<int> numbers = [1, 2, 3];       // list of non-nullable ints
+   List<int?> numbers = [1, null, 3];   // list can have null values
+   List<int>? numbers;                  // list itself can be null

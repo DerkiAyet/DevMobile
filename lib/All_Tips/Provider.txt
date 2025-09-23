@@ -1,0 +1,74 @@
+1. What is provider?
+   - A state management solution for Flutter.
+   - It lets widgets share data and react to changes.
+   - Based on ChangeNotifier (class that calls notifyListeners() when data changes).
+   - ⚛️ It's simply similar to useContext in React
+
+2. Core Classes:
+   -> ChangeNotifier: (hadi li ndirou extends minha)
+      - Our data/model class (e.g. ThemeProvider, CartProvider).
+      - Has fields, methods, and calls notifyListeners() when something changes.
+      🔹Example:
+           class CounterProvider extends ChangeNotifier {
+             int _count = 0;
+             int get count => _count;
+
+             void increment() {
+               _count++;
+               notifyListeners(); // tell listeners to rebuild
+             }
+           }
+
+   -> ChangeNotifierProvider: (used for single and multi providers)
+      - Makes your provider available in the widget tree.
+      🔹Example: (for a single provider)
+           void main() {
+             runApp(
+               ChangeNotifierProvider(
+                 create: (context) => CounterProvider(),
+                 child: MyApp(),
+               ),
+             );
+           }
+
+   -> MultiProvider:
+      - Wraps multiple providers together (cleaner for bigger apps).
+      🔹Example:
+           void main() {
+             runApp(
+               MultiProvider(
+                 providers: [
+                   ChangeNotifierProvider(create: (_) => ThemeProvider()),
+                   ChangeNotifierProvider(create: (_) => CartProvider()),
+                 ],
+                 child: MyApp(),
+               ),
+             );
+           }
+
+3. How to Use Inside Widgets: (How to call the methods and consume theme inside the widgets)
+   a. Listen & rebuild when provider changes
+      - Use context.watch<T>() or Consumer<T>().
+      🔹Example:
+          final count = context.watch<CounterProvider>().count;
+          Text("Value: $count"); // rebuilds when count changes
+      ____________________________________________________________
+          Consumer<CounterProvider>(
+            builder: (context, counter, child) =>
+                Text("Value: ${counter.count}"),
+          )
+
+   b. Read without listening (no rebuild):
+      - Use context.read<T>() //this is a shortcut it's the same with the second one.
+      - or Provider.of<T>(context, listen: false).
+      🔹Example:
+           ElevatedButton(
+             onPressed: () {
+               context.read<CounterProvider>().increment();
+             },
+             child: Text("Increment"),
+           );
+
+4. Listening vs. Not Listening:
+  - Listening (watch / Consumer) → widget rebuilds when provider calls notifyListeners().
+  - Not listening (read / listen: false) → widget does NOT rebuild, just executes methods.

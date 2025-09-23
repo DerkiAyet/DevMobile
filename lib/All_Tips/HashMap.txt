@@ -1,0 +1,8 @@
+In Flutter/Dart, the built-in Map<K, V> is already implemented as a hash-based map, so when you write:
+Map<String, int> scores = {
+  "Alice": 90,
+  "Bob": 85,
+};
+
+We’re basically using a HashMap behind the scenes. Dart doesn’t have a separate HashMap class like Java,
+but other languages (like Java, C++, Python) make the distinction.

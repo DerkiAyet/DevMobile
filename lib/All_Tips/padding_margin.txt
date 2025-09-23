@@ -1,0 +1,28 @@
+1. EdgeInsets.all(double value)
+  Sets the same padding on all 4 sides.
+    padding: EdgeInsets.all(16),
+  ➡️ Top = Bottom = Left = Right = 16
+
+2. EdgeInsets.symmetric({double vertical, double horizontal})
+  Sets equal padding vertically (top & bottom) and/or horizontally (left & right).
+    padding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+  ➡️ Top = Bottom = 20
+  ➡️ Left = Right = 10
+
+3. EdgeInsets.only({double left, double top, double right, double bottom})
+  Lets you control each side individually.
+    padding: EdgeInsets.only(left: 10, top: 20),
+  ➡️ Left = 10, Top = 20, Right & Bottom = 0
+
+4. EdgeInsets.fromLTRB(double left, double top, double right, double bottom)
+  Same as .only, but you pass values in order (Left, Top, Right, Bottom).
+    padding: EdgeInsets.fromLTRB(10, 20, 30, 40),
+  ➡️ Left = 10, Top = 20, Right = 30, Bottom = 40
+
+5. MARGIN:
+  Container(
+    margin: EdgeInsets.all(20),   // same as CSS margin: 20px;
+    padding: EdgeInsets.all(10),  // same as CSS padding: 10px;
+    color: Colors.blue,
+    child: Text("Hello Flutter"),
+  )

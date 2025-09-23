@@ -1,0 +1,11 @@
+* What const means in Dart
+  - const = compile-time constant.
+  - It tells Dart: “This value (or widget) will never change, and it can be created at compile time instead of runtime.”
+  - This makes your app faster and uses less memory, because Flutter can reuse the same object instead of creating
+    a new one every rebuild.
+
+  - const → must be known at compile time. "fixed at compile time, never changes."
+  - final → value set only once, but can be decided at runtime. "fixed at runtime, never changes."
+  - var → can change anytime.
+
+  Remark: const works with Texts but others like Container no
